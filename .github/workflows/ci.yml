@@ -1,0 +1,32 @@
+name: Test
+
+on: [pull_request, release]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
+        python-version: [ "3.10", "3.11" ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2.3.0
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run example config
+        run: |
+          # Get example config
+          poetry run python epi_downloader.py --dump-config
+
+          # Try downloading some data
+          poetry run python epi_downloader.py -c example_config.json -o data.csv
