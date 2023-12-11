@@ -19,7 +19,7 @@ flake8 = "^6.0.0"
 flake8-docstrings = "^1.6.0"
 
 [tool.poetry.group.dev.dependencies]
-pyinstaller = "^6.0.0"
+pyinstaller = "^6.3.0"
 
 [tool.mypy]
 warn_unreachable = true
