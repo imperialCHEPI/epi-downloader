@@ -4,6 +4,7 @@
 The EPI visualisation website from which the datasets are downloaded can be found here:
         https://vizhub.healthdata.org/epi
 """
+
 import argparse
 import asyncio
 import json
@@ -213,7 +214,7 @@ async def load_dataset(
 
 
 def permute_parameter_grid(
-    param_grid: Mapping[str, Iterable[int]]
+    param_grid: Mapping[str, Iterable[int]],
 ) -> Iterable[dict[str, int]]:
     """Generate each combination of parameters for the given parameter grid.
 
